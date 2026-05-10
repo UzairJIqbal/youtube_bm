@@ -1,54 +1,35 @@
-.container {
-	width: 280px;
-	color: #314d3e;
+:root {
+	--primary: #ff0000;
+	--primary-dark: #cc0000;
+	--background: #0f0f0f;
+	--surface: #212121;
+	--surface-light: #282828;
+	--text-primary: #f1f1f1;
+	--text-secondary: #aaaaaa;
+	--border: #404040;
+	--success: #34a853;
+	--danger: #ea4335;
+	--shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+	--shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.4);
 }
 
-.title {
-	font-size: 14px;
-	font-weight: bold;
-	padding: 8px;
-}
-
-.textbox {
-	width: 100%;
-	font-size: 12px;
+* {
 	margin: 0;
-	padding: 0px 2px;
+	padding: 0;
+	box-sizing: border-box;
 }
 
-.textbox:focus {
-	outline: 0;
-	border-color: #66afe9;
+body {
+	font-family:
+		-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue",
+		Arial, sans-serif;
+	background-color: var(--background);
+	color: var(--text-primary);
+	line-height: 1.5;
 }
 
-.bookmarks {
-	margin: 5px 5px;
-	padding: 3px;
-}
-
-.bookmark {
-	display: flex;
-	border-bottom-color: #00254d;
-	border-bottom-width: 1px;
-	border-bottom-style: solid;
-	border-radius: 0.8rem;
-	padding: 3px;
-	padding-bottom: 7px;
-	margin-bottom: 7px;
-}
-
-.bookmark-title {
-	padding-left: 2px;
-}
-
-.bookmark-controls img {
-	margin: 0 4px;
-	width: 18px;
-	height: 18px;
-	cursor: pointer;
-}
-
-.bookmark-controls {
-	flex: auto;
-	text-align: right;
+button,
+input,
+textarea {
+	font-family: inherit;
 }
