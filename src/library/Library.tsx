@@ -1,16 +1,10 @@
 import { useEffect, useState } from "react";
 import { bookmarkLabel, slugify, videosToMarkdown } from "../shared/markdown";
 import { deleteBookmark, getAllVideos, onVideosChanged } from "../shared/storage";
-import type { Bookmark, VideoRecord } from "../shared/types";
+import { countTags, filterVideos } from "../shared/search";
+import type { VideoRecord } from "../shared/types";
 import { watchUrl } from "../shared/youtube";
 import { downloadText } from "../ui/download";
-
-function matches(record: VideoRecord, b: Bookmark, words: string[]): boolean {
-	const haystack = [record.videoTitle, b.title, b.note, ...b.tags.map((t) => `#${t}`)]
-		.join(" ")
-		.toLowerCase();
-	return words.every((w) => haystack.includes(w));
-}
 
 export function Library() {
 	const [videos, setVideos] = useState<VideoRecord[] | null>(null);
@@ -25,20 +19,11 @@ export function Library() {
 
 	if (videos === null) return <div className="library" />;
 
-	const tagCounts = new Map<string, number>();
-	for (const v of videos) for (const b of v.bookmarks) for (const t of b.tags) tagCounts.set(t, (tagCounts.get(t) ?? 0) + 1);
-	const tags = [...tagCounts].sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]));
-
-	const words = query.toLowerCase().split(/\s+/).filter(Boolean);
-	const results = videos
-		.map((v) => ({
-			...v,
-			bookmarks: v.bookmarks.filter((b) => (!tag || b.tags.includes(tag)) && matches(v, b, words)),
-		}))
-		.filter((v) => v.bookmarks.length > 0);
+	const tags = countTags(videos);
+	const results = filterVideos(videos, query, tag);
 	const total = videos.reduce((n, v) => n + v.bookmarks.length, 0);
 	const shown = results.reduce((n, v) => n + v.bookmarks.length, 0);
-	const filtered = words.length > 0 || tag !== null;
+	const filtered = query.trim() !== "" || tag !== null;
 
 	const exportShown = () => {
 		const name = tag ? `study-bookmarks-${slugify(tag)}` : "study-bookmarks";

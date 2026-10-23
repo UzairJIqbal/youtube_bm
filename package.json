@@ -1,14 +1,23 @@
 {
-	"name": "youtube_ym",
+	"name": "youtube-study-bookmarks",
 	"private": true,
 	"version": "1.0.0",
+	"description": "Chrome extension for learners: bookmark YouTube lectures with one key, add notes, loop clips and export to Markdown.",
+	"license": "MIT",
+	"author": "Uzair Iqbal",
+	"homepage": "https://uzairjiqbal.github.io/youtube_bm/",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/UzairJIqbal/youtube_bm.git"
+	},
 	"type": "module",
 	"scripts": {
 		"build": "tsc -b && vite build && vite build -c vite.content.config.ts",
 		"lint": "eslint .",
+		"test": "vitest run",
 		"zip": "npm run build && cd dist && zip -qr ../youtube-study-bookmarks.zip . -x '.*'",
-		"store-assets": "node store-assets/capture.mjs",
-		"e2e": "node e2e/youtube.mjs"
+		"e2e": "node e2e/youtube.mjs",
+		"store-assets": "node store-assets/capture.mjs"
 	},
 	"dependencies": {
 		"react": "^19.2.4",
@@ -32,6 +41,7 @@
 		"playwright": "^1.61.1",
 		"typescript": "~5.9.3",
 		"typescript-eslint": "^8.57.0",
-		"vite": "^8.0.1"
+		"vite": "^8.0.1",
+		"vitest": "^5.0.5"
 	}
 }
