@@ -57,12 +57,14 @@ English
 | Asset | Dimensions | Status | Filename |
 |-------|-----------|--------|----------|
 | Store Icon | 128×128 PNG | ✅ Ready | public/icons/icon-128.png |
-| Screenshot 1 | 1280×800 | ⬜ Not created | |
-| Screenshot 2 | 1280×800 | ⬜ Not created | |
-| Screenshot 3 | 1280×800 | ⬜ Not created | |
-| Screenshot 4 | 1280×800 | ⬜ Not created | |
-| Small Promo Tile | 440×280 | ⬜ Not created | |
-| Marquee Promo Tile | 1400×560 | ⬜ Not created | |
+| Screenshot 1 | 1280×800 | ✅ Ready | store-assets/out/screenshot-1-capture.png |
+| Screenshot 2 | 1280×800 | ✅ Ready | store-assets/out/screenshot-2-notes.png |
+| Screenshot 3 | 1280×800 | ✅ Ready | store-assets/out/screenshot-3-loop.png |
+| Screenshot 4 | 1280×800 | ✅ Ready | store-assets/out/screenshot-4-export.png |
+| Small Promo Tile | 440×280 | ✅ Ready | store-assets/out/promo-small-440x280.png |
+| Marquee Promo Tile | 1400×560 | ✅ Ready | store-assets/out/promo-marquee-1400x560.png |
+
+Regenerate all of them with `npm run store-assets`. It renders the real popup component with sample data next to a mock of the player, using headless Chrome. Swapping one for a real capture from a lecture video is a good upgrade once the extension is installed.
 
 ### Screenshot Notes
 1. A lecture video with the player buttons, progress-bar markers and the "Bookmarked 12:34" toast. Caption: "One key to capture".

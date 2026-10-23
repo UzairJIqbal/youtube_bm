@@ -6,7 +6,8 @@
   "scripts": {
     "build": "tsc -b && vite build && vite build -c vite.content.config.ts",
     "lint": "eslint .",
-    "zip": "npm run build && cd dist && zip -qr ../youtube-study-bookmarks.zip . -x '.*'"
+    "zip": "npm run build && cd dist && zip -qr ../youtube-study-bookmarks.zip . -x '.*'",
+    "store-assets": "node store-assets/capture.mjs"
   },
   "dependencies": {
     "react": "^19.2.4",
