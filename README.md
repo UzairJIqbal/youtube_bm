@@ -72,7 +72,7 @@ The Chrome Web Store listing is on its way. Until then:
 ```mermaid
 flowchart LR
     K["Alt+B / Alt+C"] --> SW[Service worker]
-    SW -->|COMMAND| CS["Content script<br/><sub>in the YouTube tab</sub>"]
+    SW -->|COMMAND| CS["Content script<br/>(YouTube tab)"]
     POP[Popup] -->|"PLAY · LOOP · GET_STATE"| CS
     CS --> DB[("chrome.storage.local")]
     POP --> DB
