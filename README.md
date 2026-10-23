@@ -1,57 +1,156 @@
+<div align="center">
+
+<img src="store-assets/out/promo-marquee-1400x560.png" alt="YouTube Study Bookmarks: bookmark YouTube lectures with one key" width="100%">
+
 # YouTube Study Bookmarks
 
-A Chrome extension (Manifest V3) for learners: bookmark moments in YouTube videos with one key, add notes and tags, loop clips, and export to Markdown/Obsidian. Everything is stored locally; there is no backend.
+**Bookmark the moments that matter in YouTube lectures with one key. Add notes, loop the hard parts and export everything to your notes app.**
 
-## Features (v1.0)
+[![Build](https://github.com/UzairJIqbal/youtube_bm/actions/workflows/release.yml/badge.svg)](https://github.com/UzairJIqbal/youtube_bm/actions/workflows/release.yml)
+[![Release](https://img.shields.io/github/v/release/UzairJIqbal/youtube_bm?color=cc0029)](https://github.com/UzairJIqbal/youtube_bm/releases/latest)
+[![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+![Manifest V3](https://img.shields.io/badge/Chrome-Manifest%20V3-4285F4?logo=googlechrome&logoColor=white)
+![TypeScript](https://img.shields.io/badge/TypeScript-strict-3178C6?logo=typescript&logoColor=white)
+![React 19](https://img.shields.io/badge/React-19-61DAFB?logo=react&logoColor=black)
 
-- **Alt+B** bookmarks the current moment, titled from the video's chapter
-- **Alt+C** twice saves a clip (start → end) that can be looped
-- Bookmark and clip buttons in the player, markers on the progress bar
-- Popup: jump, loop, edit title/note/tags, nudge or type the start time, search
-- Library page: every bookmark across all videos, with search, tag filters and Markdown export
-- Optional automatic rewind on capture (Settings)
-- Markdown export per video (copy or .md) and for everything (Settings)
-- JSON backup and import, including files from the original version of this extension
-- Automatic migration of bookmarks saved by the original version
+[Features](#features) · [Install](#install) · [How it works](#how-it-works) · [Development](#development) · [Architecture](docs/architecture.md) · [Privacy](https://uzairjiqbal.github.io/youtube_bm/privacy.html)
+
+</div>
+
+---
+
+## Why
+
+Long lectures and tutorials are where people learn the most on YouTube, and where they lose the most time. You need to find "the part where she explained the chain rule" again, but YouTube's own tools are made for watching, not studying. Existing bookmark extensions make you pause and type a label, which breaks your focus.
+
+Study Bookmarks keeps you in the video. One key saves the moment and titles it from the chapter. You add notes later, when you have time.
+
+## Features
+
+<table>
+<tr>
+<td width="50%"><img src="store-assets/out/screenshot-1-capture.png" alt="Bookmarking a moment with Alt+B"></td>
+<td width="50%"><img src="store-assets/out/screenshot-2-notes.png" alt="Notes and tags in the popup"></td>
+</tr>
+<tr>
+<td><b>One key to capture.</b> <kbd>Alt</kbd>+<kbd>B</kbd> saves the current moment, titled automatically from the video's chapter. Markers show up on the progress bar.</td>
+<td><b>Notes when you have time.</b> Add a title, a note and #tags to any bookmark. Nudge the time by a second or type an exact one.</td>
+</tr>
+<tr>
+<td><img src="store-assets/out/screenshot-3-loop.png" alt="Looping a clip"></td>
+<td><img src="store-assets/out/screenshot-4-export.png" alt="Markdown export in a notes app"></td>
+</tr>
+<tr>
+<td><b>Clip and loop.</b> Press <kbd>Alt</kbd>+<kbd>C</kbd> at the start and end of an explanation, then replay just that part until it sinks in.</td>
+<td><b>Export to your notes.</b> Copy Markdown with clickable timestamp links for Obsidian, Notion or Logseq, or download a <code>.md</code> file.</td>
+</tr>
+<tr>
+<td colspan="2"><img src="store-assets/out/screenshot-5-library.png" alt="Library with search across videos"></td>
+</tr>
+<tr>
+<td colspan="2"><b>Every bookmark in one place.</b> The library searches titles, notes and tags across all your videos, filters by tag and exports what you find.</td>
+</tr>
+</table>
+
+Also included:
+
+- **Automatic rewind:** captures a few seconds earlier, to make up for pressing late
+- **Backup and restore** as a file, including imports from the original version of this extension
+- **Private by design:** no account, no tracking, no server; data stays in your browser
+
+## Install
+
+The Chrome Web Store listing is on its way. Until then:
+
+1. Download `youtube-study-bookmarks.zip` from the [latest release](https://github.com/UzairJIqbal/youtube_bm/releases/latest) and unzip it.
+2. Open `chrome://extensions` and turn on **Developer mode**.
+3. Click **Load unpacked** and choose the unzipped folder.
+4. Open any YouTube video and press <kbd>Alt</kbd>+<kbd>B</kbd>.
+
+## How it works
+
+```mermaid
+flowchart LR
+    K["Alt+B / Alt+C"] --> SW[Service worker]
+    SW -->|COMMAND| CS["Content script<br/><sub>in the YouTube tab</sub>"]
+    POP[Popup] -->|"PLAY · LOOP · GET_STATE"| CS
+    CS --> DB[("chrome.storage.local")]
+    POP --> DB
+    LIB[Library] --> DB
+    DB -. onChanged .-> CS & POP & LIB
+```
+
+There is no backend. A content script adds the buttons, markers and loop to YouTube's player. The popup, library and settings pages are React apps. Everything shares `chrome.storage.local` and stays in sync through its change events. The full write-up, with the data model and design decisions, is in [docs/architecture.md](docs/architecture.md).
+
+### Engineering highlights
+
+- **Minimal permissions.** Only `storage` and `youtube.com`, with no `tabs` permission and no remote code.
+- **Built for a single-page app.** YouTube never reloads between videos, so the content script follows `yt-navigate-finish`, resets per-video state and waits for the player before injecting anything.
+- **One file knows YouTube's DOM.** Every selector lives in [`player.ts`](src/content/player.ts), so a YouTube redesign is a one-file fix. That paid off when YouTube's 2025 player started squeezing third-party icons to dots.
+- **Tested against the real thing.** The Playwright suite loads the built extension and drives live YouTube videos end to end. Unit tests cover the storage, search, export and import logic.
+- **Two builds, one toolchain.** Vite builds the React pages and module service worker. A second Vite config bundles the content script as a classic IIFE, because Chrome can't load content scripts as modules.
+
+### Tech stack
+
+| | |
+|---|---|
+| Extension | Chrome Manifest V3, service worker, content script |
+| UI | React 19 with the React Compiler, TypeScript (strict), plain CSS |
+| Build | Vite 8 (Rolldown) |
+| Tests | Vitest, Playwright |
+| CI/CD | GitHub Actions: lint, test, build, release |
+| Site | GitHub Pages ([landing page](https://uzairjiqbal.github.io/youtube_bm/), [privacy policy](https://uzairjiqbal.github.io/youtube_bm/privacy.html)) |
 
 ## Development
 
+Requires Node 22 or newer.
+
 ```sh
 npm install
-npm run build   # type-check, then build popup/options/service worker and the content script into dist/
+npm run build          # type-check, then build everything into dist/
+npm test               # unit tests (Vitest)
 npm run lint
-npm run zip     # build and package dist/ as youtube-study-bookmarks.zip for the Chrome Web Store
-npm run e2e     # load dist/ into Playwright Chromium and test it against real YouTube videos
-npm run store-assets  # regenerate the store screenshots and promo tiles
+npm run e2e            # end-to-end on live YouTube (Playwright)
+npm run zip            # build the Chrome Web Store package
+npm run store-assets   # render the screenshots in this README
 ```
+
+Load `dist/` at `chrome://extensions` → **Load unpacked**, then click reload after each rebuild.
 
 `npm run e2e` needs a network connection and the Playwright browser (`npx playwright install chromium`). It runs headless in a throwaway profile, so it never touches your own Chrome.
 
-Load `dist/` at `chrome://extensions` → Developer mode → **Load unpacked**. Rebuild and click reload after changes.
+### Project structure
 
-## Layout
+```
+src/
+├── content/      content script: player buttons, capture, loop, markers
+│   └── player.ts every YouTube selector, in one place
+├── background/   service worker: shortcuts, install, migration
+├── popup/        toolbar popup (React)
+├── library/      all bookmarks with search and tag filters (React)
+├── options/      settings, backup and import (React)
+├── shared/       storage, types, messages, Markdown, search (+ unit tests)
+└── ui/           shared theme and helpers
+public/           manifest, injected CSS, icons
+e2e/              Playwright test against live YouTube
+store-assets/     harness that renders the store and README screenshots
+docs/             architecture notes and the GitHub Pages site
+```
 
-| Path | What it is |
-|---|---|
-| `public/manifest.json` | Extension manifest (copied to `dist/`) |
-| `public/content.css` | Styles injected into YouTube, all prefixed `ytsb-` |
-| `src/content/` | Content script: player buttons, capture, loop, markers. `player.ts` holds every YouTube selector |
-| `src/background/` | Service worker: forwards keyboard shortcuts to the tab, migrates old data |
-| `src/popup/`, `popup.html` | Toolbar popup (React) |
-| `src/options/`, `options.html` | Settings, shortcuts, backup/import, Pro waitlist (React) |
-| `src/library/`, `library.html` | Library of all bookmarks with search and tag filters (React) |
-| `e2e/` | End-to-end test against live YouTube |
-| `store-assets/` | Harness that renders the Chrome Web Store screenshots |
-| `src/shared/` | Storage, types, time formatting, Markdown, backup format, messages |
+### Releasing
 
-The content script is built separately (`vite.content.config.ts`) as a single classic script, because Chrome content scripts can't be ES modules.
+Bump `version` in [`public/manifest.json`](public/manifest.json) and push a matching tag (`v1.0.1`). The workflow lints, tests and builds, then attaches the store zip to a GitHub release. Store listing copy and the privacy disclosures are in [CHROMEWEBSTORE.md](CHROMEWEBSTORE.md).
 
-## Data
+## Roadmap
 
-`chrome.storage.local`, one key per video: `video:<videoId>` → `{ videoId, videoTitle, bookmarks[], updatedAt }`, plus `settings`. Every view listens to `chrome.storage.onChanged`, so the popup, settings page and player stay in sync.
+- [x] One-key capture, clips and loop, progress-bar markers
+- [x] Notes, tags, library search, Markdown export, backup
+- [ ] Chrome Web Store release
+- [ ] Optional sync across devices
+- [ ] Notion export and shareable bookmark lists
 
-## Publishing
+Have an idea or found a bug? [Open an issue](https://github.com/UzairJIqbal/youtube_bm/issues/new/choose).
 
-Store listing copy, permission justifications and the privacy disclosure are in [CHROMEWEBSTORE.md](CHROMEWEBSTORE.md); the privacy policy is [PRIVACY.md](PRIVACY.md), published from [docs/](docs/) with GitHub Pages.
+## License
 
-Pushing a tag like `v1.0.1` runs the release workflow, which builds, lints and attaches the store zip to a GitHub release.
+[MIT](LICENSE) © Uzair Iqbal

@@ -14,6 +14,7 @@ const shots = [
 	["notes", "screenshot-2-notes.png", 1280, 800],
 	["loop", "screenshot-3-loop.png", 1280, 800],
 	["export", "screenshot-4-export.png", 1280, 800],
+	["library&q=%23math", "screenshot-5-library.png", 1280, 800],
 	["promo-small", "promo-small-440x280.png", 440, 280],
 	["promo-marquee", "promo-marquee-1400x560.png", 1400, 560],
 ];

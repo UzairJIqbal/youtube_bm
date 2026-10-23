@@ -38,3 +38,25 @@ export const record: VideoRecord = {
 		},
 	],
 };
+
+/** Extra videos so the library scene looks like a few weeks of studying. */
+export const moreRecords: VideoRecord[] = [
+	{
+		videoId: "fNk_zzaMoSs",
+		videoTitle: "Linear Algebra — Eigenvectors and eigenvalues",
+		updatedAt: -1,
+		bookmarks: [
+			{ id: "6", start: 95, title: "What an eigenvector means", note: "Vector that stays on its own span", tags: ["math"], createdAt: 0 },
+			{ id: "7", start: 618, end: 742, title: "Computing them", note: "det(A − λI) = 0", tags: ["exam", "math"], createdAt: 0 },
+		],
+	},
+	{
+		videoId: "kCc8FmEb1nY",
+		videoTitle: "Let's build GPT: from scratch, in code",
+		updatedAt: -2,
+		bookmarks: [
+			{ id: "8", start: 2830, title: "Self-attention", note: "Queries, keys and values", tags: ["ml"], createdAt: 0 },
+			{ id: "9", start: 4410, title: "Residual connections", note: "", tags: ["ml"], createdAt: 0 },
+		],
+	},
+];

@@ -4,7 +4,7 @@ import "../../src/ui/theme.css";
 import "../../src/popup/popup.css";
 import "./harness.css";
 import { installChromeStub } from "./chrome-stub";
-import { DURATION, VIDEO_ID, VIDEO_TITLE, record } from "./data";
+import { DURATION, VIDEO_ID, VIDEO_TITLE, moreRecords, record } from "./data";
 import { videoToMarkdown } from "../../src/shared/markdown";
 import { formatTime } from "../../src/shared/time";
 import { isClip } from "../../src/shared/types";
@@ -14,7 +14,11 @@ const scene = new URLSearchParams(location.search).get("scene") ?? "capture";
 const clip = record.bookmarks.find(isClip)!;
 
 installChromeStub(
-	{ [`video:${VIDEO_ID}`]: record, settings: { offsetSeconds: 2 } },
+	{
+		[`video:${VIDEO_ID}`]: record,
+		...(scene === "library" ? Object.fromEntries(moreRecords.map((r) => [`video:${r.videoId}`, r])) : {}),
+		settings: { offsetSeconds: 2 },
+	},
 	`https://www.youtube.com/watch?v=${VIDEO_ID}`,
 	{
 		videoId: VIDEO_ID,
@@ -27,6 +31,8 @@ installChromeStub(
 
 // Import after the stub exists, so module-level code sees `chrome`.
 const { Popup } = await import("../../src/popup/Popup");
+const { Library } = await import("../../src/library/Library");
+if (scene === "library") await import("../../src/library/library.css");
 
 function Player({ time, toast, highlightClip }: { time: number; toast?: string; highlightClip?: boolean }) {
 	return (
@@ -172,6 +178,21 @@ const scenes: Record<string, ReactNode> = {
 	export: (
 		<Frame headline="Export to your notes" sub="Copy as Markdown with clickable timestamps. Paste into Obsidian, Notion or Logseq.">
 			<MarkdownNote />
+		</Frame>
+	),
+	library: (
+		<Frame headline="Every bookmark in one place" sub="Search across all your videos, filter by #tag and export what you need.">
+			<div className="window">
+				<div className="notes__bar">
+					<span className="dot" />
+					<span className="dot" />
+					<span className="dot" />
+					<span className="notes__name">Study Bookmarks — Library</span>
+				</div>
+				<div className="window__body">
+					<Library />
+				</div>
+			</div>
 		</Frame>
 	),
 	"promo-small": <Promo size="small" />,

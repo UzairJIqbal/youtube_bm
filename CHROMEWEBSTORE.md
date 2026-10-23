@@ -65,6 +65,7 @@ English
 | Screenshot 2 | 1280×800 | ✅ Ready | store-assets/out/screenshot-2-notes.png |
 | Screenshot 3 | 1280×800 | ✅ Ready | store-assets/out/screenshot-3-loop.png |
 | Screenshot 4 | 1280×800 | ✅ Ready | store-assets/out/screenshot-4-export.png |
+| Screenshot 5 | 1280×800 | ✅ Ready | store-assets/out/screenshot-5-library.png |
 | Small Promo Tile | 440×280 | ✅ Ready | store-assets/out/promo-small-440x280.png |
 | Marquee Promo Tile | 1400×560 | ✅ Ready | store-assets/out/promo-marquee-1400x560.png |
 
@@ -75,6 +76,7 @@ Regenerate all of them with `npm run store-assets`. It renders the real popup co
 2. The popup open next to the video, with titled bookmarks, a note and tags. Caption: "Add notes when you have time".
 3. A clip looping, with the Loop button active in the popup. Caption: "Loop the part you need".
 4. The Markdown export pasted into Obsidian, with clickable timestamps. Caption: "Export to your notes".
+5. The library filtered by #math, with matches from two videos. Caption: "Every bookmark in one place".
 
 ## Permissions Justification
 
