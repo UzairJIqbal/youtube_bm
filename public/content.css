@@ -1,0 +1,71 @@
+.ytsb-button {
+	display: inline-flex !important;
+	align-items: center;
+	justify-content: center;
+	padding: 0 10px !important;
+	color: #fff;
+	opacity: 0.9;
+	vertical-align: top;
+}
+
+.ytsb-button:hover {
+	opacity: 1;
+}
+
+.ytsb-button svg {
+	width: 24px;
+	height: 24px;
+}
+
+.ytsb-button--active {
+	color: #ff4e45;
+	opacity: 1;
+}
+
+.ytsb-markers {
+	position: absolute;
+	inset: 0;
+	pointer-events: none;
+	z-index: 40;
+}
+
+.ytsb-marker {
+	position: absolute;
+	top: -2px;
+	bottom: -2px;
+	width: 3px;
+	margin-left: -1px;
+	min-width: 3px;
+	background: #ffd400;
+	border-radius: 1px;
+	pointer-events: auto;
+	cursor: pointer;
+}
+
+.ytsb-marker--clip {
+	margin-left: 0;
+	background: rgba(255, 212, 0, 0.55);
+	border-left: 2px solid #ffd400;
+	border-right: 2px solid #ffd400;
+}
+
+.ytsb-toast {
+	position: absolute;
+	top: 16px;
+	left: 50%;
+	z-index: 70;
+	transform: translate(-50%, -8px);
+	padding: 8px 14px;
+	border-radius: 8px;
+	background: rgba(15, 15, 15, 0.9);
+	color: #f1f1f1;
+	font: 500 14px/1.3 Roboto, Arial, sans-serif;
+	opacity: 0;
+	pointer-events: none;
+	transition: opacity 0.15s ease, transform 0.15s ease;
+}
+
+.ytsb-toast--visible {
+	opacity: 1;
+	transform: translate(-50%, 0);
+}
