@@ -24,3 +24,7 @@ dist-ssr
 *.sw?
 *.zip
 store-assets/dist
+
+# Private research and strategy (kept local, not published)
+competitor-profiles/
+PRODUCT-BRIEF.md

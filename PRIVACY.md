@@ -1,6 +1,6 @@
 # Privacy Policy — YouTube Study Bookmarks
 
-_Last updated: 23 October 2026_
+_Last updated: 24 October 2026_
 
 YouTube Study Bookmarks is a browser extension for saving timestamped bookmarks on YouTube videos. This policy explains what it stores and where.
 
@@ -35,4 +35,4 @@ If a future version adds features that send data off your device, such as option
 
 ## Contact
 
-Questions: [contact email to be added]
+Questions or requests: open an issue at https://github.com/UzairJIqbal/youtube_bm/issues

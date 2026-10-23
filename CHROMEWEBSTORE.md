@@ -1,6 +1,6 @@
 # Chrome Web Store Listing — YouTube Study Bookmarks
 
-> Last Updated: 2026-10-23
+> Last Updated: 2026-10-24
 
 ## Store Listing
 
@@ -26,6 +26,9 @@ Your bookmarks and clips appear as markers on the progress bar. Hover over one t
 FIX TIMING IN ONE CLICK
 Pressed a little late? Nudge any bookmark a second earlier or later, type an exact time, or set an automatic rewind of a few seconds for every capture.
 
+EVERY BOOKMARK IN ONE PLACE
+Open the Library to see bookmarks from all your videos together. Search titles, notes and tags, filter by tag, and jump straight back into any video at the right moment.
+
 EXPORT TO YOUR NOTES
 Copy a video's bookmarks as Markdown with clickable timestamp links. Paste them into Obsidian, Notion, Logseq or any notes app, or download a .md file. Export is always free.
 
@@ -33,7 +36,8 @@ HOW TO USE IT
 1. Open any YouTube video.
 2. Press Alt+B to bookmark, or Alt+C twice to save a clip. You can also use the two new buttons in the player.
 3. Click the toolbar icon to see your bookmarks, jump to one, loop a clip, add notes and tags, or copy everything as Markdown.
-4. Change the shortcuts at any time from the Settings page.
+4. Open the Library from the popup to search everything you have saved.
+5. Change the shortcuts at any time from the Settings page.
 
 PRIVATE BY DESIGN
 Your bookmarks are stored only in your browser. There's no account, no tracking and no analytics, and nothing is sent to any server. Back up and restore your bookmarks as a file from the Settings page.
@@ -111,7 +115,7 @@ Note for the dashboard form: the bookmarks the user creates (video ID, title and
 ## Privacy Policy
 
 **Privacy Policy URL**
-⬜ Not hosted yet. The draft is in [PRIVACY.md](PRIVACY.md). Publish it, for example with GitHub Pages or a Notion page, and put the URL here.
+https://uzairjiqbal.github.io/youtube_bm/privacy.html (source: [PRIVACY.md](PRIVACY.md), page: docs/privacy.html)
 
 ## Distribution
 
@@ -127,16 +131,16 @@ Note for the dashboard form: the bookmarks the user creates (video ID, title and
 ⬜ To fill in (shown publicly on the listing; a dedicated support address is better than a personal one)
 
 **Support URL / Email**
-⬜ To fill in, for example the GitHub Issues page
+https://github.com/UzairJIqbal/youtube_bm/issues
 
 **Homepage URL**
-⬜ Optional
+https://uzairjiqbal.github.io/youtube_bm/
 
 ## Version History
 
 | Version | Date | Changes | Status |
 |---------|------|---------|--------|
-| 1.0.0 | 2026-10-23 | Full rebuild. Hotkeys (Alt+B, Alt+C), automatic chapter titles, notes and tags, editable time with nudge and automatic rewind, Clip & Loop, progress-bar markers, Markdown export, backup and import, settings page. Bookmarks from the previous version are moved over automatically. Removed the `tabs` permission. | Draft |
+| 1.0.0 | 2026-10-23 | Full rebuild. Hotkeys (Alt+B, Alt+C), automatic chapter titles, notes and tags, editable time with nudge and automatic rewind, Clip & Loop, progress-bar markers, Markdown export, backup and import, settings page. Bookmarks from the previous version are moved over automatically. Library page with search across all videos, tag filters and export. Removed the `tabs` permission. | Draft |
 
 ## Review Notes
 
@@ -144,7 +148,6 @@ Note for the dashboard form: the bookmarks the user creates (video ID, title and
 - Works on www.youtube.com watch and live pages. Shorts, embedded players on other sites and music.youtube.com are not supported in v1.0.
 - YouTube tabs that were open before installing need a reload. The popup says so.
 - Chapter titles are only available for videos that have chapters. Others are left untitled and show their time.
-- Before submitting, replace `WAITLIST_URL` in `src/shared/config.ts` with the real waitlist form link.
 
 ### Rejection History
 None yet.
