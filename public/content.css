@@ -12,9 +12,13 @@
 	opacity: 1;
 }
 
+/* YouTube's 2025 player pads every control icon by 12px, which squeezes ours to nothing. */
 .ytsb-button svg {
-	width: 24px;
-	height: 24px;
+	flex-shrink: 0;
+	box-sizing: content-box !important;
+	width: 24px !important;
+	height: 24px !important;
+	padding: 0 !important;
 }
 
 .ytsb-button--active {

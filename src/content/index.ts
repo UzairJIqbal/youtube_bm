@@ -4,7 +4,7 @@ import { formatTime } from "../shared/time";
 import { isClip, type Bookmark } from "../shared/types";
 import { getVideoIdFromUrl } from "../shared/youtube";
 import {
-	getChapterTitle,
+	getChapterTitleSoon,
 	getProgressBar,
 	getRightControls,
 	getVideoElement,
@@ -18,6 +18,8 @@ const CLIP_ICON =
 	'<svg viewBox="0 0 24 24" width="100%" height="100%" aria-hidden="true"><path fill="currentColor" d="M4 6h2v12H4zm14 0h2v12h-2zM8 11h8v2H8z"/><path fill="currentColor" d="M9 8l-3 4 3 4zm6 0v8l3-4z"/></svg>';
 
 let videoId: string | null = null;
+/** When the current video was opened; the chapter label isn't ready for a moment after. */
+let openedAt = 0;
 let pendingClipStart: number | null = null;
 let loop: { start: number; end: number } | null = null;
 let bookmarks: Bookmark[] = [];
@@ -55,7 +57,7 @@ async function addPointBookmark(): Promise<void> {
 	if (start === null || !videoId) return;
 	await addBookmark(videoId, getVideoTitle(), {
 		start,
-		title: getChapterTitle(),
+		title: await getChapterTitleSoon(Date.now() - openedAt < 5000 ? 1500 : 0),
 		note: "",
 		tags: [],
 	});
@@ -85,7 +87,7 @@ async function toggleClip(): Promise<void> {
 	await addBookmark(videoId, getVideoTitle(), {
 		start,
 		end,
-		title: getChapterTitle(),
+		title: await getChapterTitleSoon(Date.now() - openedAt < 5000 ? 1500 : 0),
 		note: "",
 		tags: [],
 	});
@@ -193,6 +195,7 @@ async function onNavigate(): Promise<void> {
 	const id = getVideoIdFromUrl(location.href);
 	if (id !== videoId) {
 		videoId = id;
+		openedAt = Date.now();
 		pendingClipStart = null;
 		loop = null;
 	}

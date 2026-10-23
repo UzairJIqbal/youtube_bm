@@ -21,6 +21,16 @@ export function getChapterTitle(): string {
 	return el?.textContent?.trim() ?? "";
 }
 
+/**
+ * The chapter label fills in a moment after a video opens, so a bookmark taken right away
+ * would come back untitled. Pass a wait only in that window, so other captures stay instant.
+ */
+export async function getChapterTitleSoon(waitMs: number): Promise<string> {
+	const now = getChapterTitle();
+	if (now || waitMs <= 0) return now;
+	return (await waitFor(() => getChapterTitle() || null, waitMs)) ?? "";
+}
+
 export function getVideoTitle(): string {
 	const el =
 		document.querySelector("h1.ytd-watch-metadata yt-formatted-string") ??

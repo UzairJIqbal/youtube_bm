@@ -136,6 +136,9 @@ export function Options() {
 					{counts.videos === 1 ? "" : "s"}, stored only in this browser. Nothing is sent anywhere.
 				</p>
 				<div className="buttons">
+					<a className="btn btn--primary" href="library.html">
+						Open library
+					</a>
 					<button className="btn" onClick={exportMarkdown} disabled={counts.bookmarks === 0}>
 						Export all as Markdown
 					</button>

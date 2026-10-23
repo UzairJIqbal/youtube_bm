@@ -71,6 +71,7 @@ export function Popup() {
 	};
 
 	const openOptions = () => void chrome.runtime.openOptionsPage();
+	const openLibrary = () => void chrome.tabs.create({ url: chrome.runtime.getURL("library.html") });
 
 	if (tab === undefined) return <div className="popup" />;
 
@@ -86,9 +87,14 @@ export function Popup() {
 					<span className="popup__logo" aria-hidden="true" />
 					Study Bookmarks
 				</div>
-				<button className="btn btn--ghost btn--small" onClick={openOptions}>
-					Settings
-				</button>
+				<div>
+					<button className="btn btn--ghost btn--small" onClick={openLibrary}>
+						Library
+					</button>
+					<button className="btn btn--ghost btn--small" onClick={openOptions}>
+						Settings
+					</button>
+				</div>
 			</header>
 
 			{tab === null ? (

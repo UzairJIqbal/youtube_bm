@@ -11,6 +11,7 @@ export default defineConfig({
 			input: {
 				popup: "popup.html",
 				options: "options.html",
+				library: "library.html",
 				background: "src/background/index.ts",
 			},
 			output: {
