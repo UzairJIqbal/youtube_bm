@@ -31,6 +31,18 @@ Click **Create new extension** and upload `youtube-study-bookmarks.zip`. The das
 | Support contact | https://github.com/UzairJIqbal/youtube_bm/issues |
 | Mature content | No |
 
+## Privacy
+
+| Field | Value |
+|---|---|
+| Single purpose | Lets users save, annotate, replay and export timestamped bookmarks for YouTube videos. |
+| Justification for `storage` | Saves the user's bookmarks, notes, tags and settings in their own browser, so they're still there next time they open the video. |
+| Justification for `https://www.youtube.com/*` | Adds the bookmark and clip buttons and the bookmark markers to the YouTube player, reads the current playback time and chapter title when the user saves a bookmark, and lets the popup tell which YouTube video is open so it can show that video's bookmarks. The extension runs on no other site. |
+| Remote code | No. All code is in the package. |
+| Data collected | None. Leave every data type unticked: bookmarks are stored on the user's device and never sent anywhere. |
+| Certifications | Tick all three: not sold to third parties, not used for unrelated purposes, not used for creditworthiness or lending. |
+| Privacy policy URL | https://uzairjiqbal.github.io/youtube_bm/privacy.html |
+
 ## 5. Store listing (English)
 
 **Description**
