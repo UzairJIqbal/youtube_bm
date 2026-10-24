@@ -1,5 +1,7 @@
 # Microsoft Edge Add-ons Listing — YouTube Study Bookmarks
 
+**Live:** https://microsoftedge.microsoft.com/addons/detail/youtube-study-bookmarks/ciobpmgaabihaoabjjiifhigfbnggmob
+
 > Last Updated: 2026-10-24
 
 Edge runs Chrome extensions, so the package is the same `youtube-study-bookmarks.zip` built by `npm run zip`. Registering as an Edge developer is free. The store copy and privacy answers match [CHROMEWEBSTORE.md](CHROMEWEBSTORE.md), which is the source for anything not repeated here.
@@ -73,7 +75,7 @@ Paste this into the **Notes for certification** box on the submit page:
 
 | Version | Date | Changes | Status |
 |---|---|---|---|
-| 1.0.1 | 2026-10-24 | First Edge release. The Settings page opens Edge's own shortcuts page. | Draft |
+| 1.0.1 | 2026-10-24 | First Edge release. The Settings page opens Edge's own shortcuts page. | Published |
 
 ## Review Notes
 

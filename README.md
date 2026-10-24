@@ -6,6 +6,8 @@
 
 **Bookmark the moments that matter in YouTube lectures with one key. Add notes, loop the hard parts and export everything to your notes app.**
 
+[![Get it for Microsoft Edge](https://img.shields.io/badge/Get_it_for-Microsoft_Edge-0078D7?style=for-the-badge&logo=microsoftedge&logoColor=white)](https://microsoftedge.microsoft.com/addons/detail/youtube-study-bookmarks/ciobpmgaabihaoabjjiifhigfbnggmob)
+
 [![Build](https://github.com/UzairJIqbal/youtube_bm/actions/workflows/release.yml/badge.svg)](https://github.com/UzairJIqbal/youtube_bm/actions/workflows/release.yml)
 [![Release](https://img.shields.io/github/v/release/UzairJIqbal/youtube_bm?color=cc0029)](https://github.com/UzairJIqbal/youtube_bm/releases/latest)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
@@ -13,7 +15,7 @@
 ![TypeScript](https://img.shields.io/badge/TypeScript-strict-3178C6?logo=typescript&logoColor=white)
 ![React 19](https://img.shields.io/badge/React-19-61DAFB?logo=react&logoColor=black)
 
-[Features](#features) · [Install](#install) · [How it works](#how-it-works) · [Development](#development) · [Architecture](docs/architecture.md) · [Privacy](https://uzairjiqbal.github.io/youtube_bm/privacy.html)
+[Features](#features) · [Install](#install) · [Edge Add-ons](https://microsoftedge.microsoft.com/addons/detail/youtube-study-bookmarks/ciobpmgaabihaoabjjiifhigfbnggmob) · [How it works](#how-it-works) · [Development](#development) · [Architecture](docs/architecture.md) · [Privacy](https://uzairjiqbal.github.io/youtube_bm/privacy.html)
 
 </div>
 
@@ -60,12 +62,15 @@ Also included:
 
 ## Install
 
-Works in Chrome and Microsoft Edge. The Edge Add-ons listing is on its way. Until then:
+**Microsoft Edge:** install it from [Edge Add-ons](https://microsoftedge.microsoft.com/addons/detail/youtube-study-bookmarks/ciobpmgaabihaoabjjiifhigfbnggmob).
+
+**Chrome:** the Chrome Web Store listing is on its way. Until then, load it manually:
 
 1. Download `youtube-study-bookmarks.zip` from the [latest release](https://github.com/UzairJIqbal/youtube_bm/releases/latest) and unzip it.
-2. Open `chrome://extensions` (in Edge, `edge://extensions`) and turn on **Developer mode**.
+2. Open `chrome://extensions` and turn on **Developer mode**.
 3. Click **Load unpacked** and choose the unzipped folder.
-4. Open any YouTube video and press <kbd>Alt</kbd>+<kbd>B</kbd>.
+
+Then open any YouTube video and press <kbd>Alt</kbd>+<kbd>B</kbd>.
 
 ## How it works
 
@@ -145,7 +150,7 @@ Bump `version` in [`public/manifest.json`](public/manifest.json) and push a matc
 
 - [x] One-key capture, clips and loop, progress-bar markers
 - [x] Notes, tags, library search, Markdown export, backup
-- [ ] Microsoft Edge Add-ons release
+- [x] [Microsoft Edge Add-ons](https://microsoftedge.microsoft.com/addons/detail/youtube-study-bookmarks/ciobpmgaabihaoabjjiifhigfbnggmob) release
 - [ ] Chrome Web Store release
 - [ ] Optional sync across devices
 - [ ] Notion export and shareable bookmark lists
