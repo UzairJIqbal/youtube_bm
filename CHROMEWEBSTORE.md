@@ -142,6 +142,7 @@ https://uzairjiqbal.github.io/youtube_bm/
 
 | Version | Date | Changes | Status |
 |---------|------|---------|--------|
+| 1.0.1 | 2026-10-24 | The Settings page opens the right shortcuts page in Microsoft Edge. | Draft |
 | 1.0.0 | 2026-10-23 | Full rebuild. Hotkeys (Alt+B, Alt+C), automatic chapter titles, notes and tags, editable time with nudge and automatic rewind, Clip & Loop, progress-bar markers, Markdown export, backup and import, settings page. Bookmarks from the previous version are moved over automatically. Library page with search across all videos, tag filters and export. Removed the `tabs` permission. | Draft |
 
 ## Review Notes

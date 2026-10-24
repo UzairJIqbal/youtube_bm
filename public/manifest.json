@@ -1,7 +1,7 @@
 {
 	"manifest_version": 3,
 	"name": "YouTube Study Bookmarks",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"description": "Bookmark moments in YouTube lectures with one key, add notes, loop clips and export to Markdown or Obsidian.",
 	"permissions": ["storage"],
 	"host_permissions": ["https://www.youtube.com/*"],

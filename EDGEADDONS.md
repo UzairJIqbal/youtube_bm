@@ -73,7 +73,7 @@ Paste this into the **Notes for certification** box on the submit page:
 
 | Version | Date | Changes | Status |
 |---|---|---|---|
-| 1.0.0 | 2026-10-24 | First Edge release, same build as the Chrome package. The Settings page opens Edge's own shortcuts page. | Draft |
+| 1.0.1 | 2026-10-24 | First Edge release. The Settings page opens Edge's own shortcuts page. | Draft |
 
 ## Review Notes
 

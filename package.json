@@ -1,7 +1,7 @@
 {
 	"name": "youtube-study-bookmarks",
 	"private": true,
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"description": "Chrome extension for learners: bookmark YouTube lectures with one key, add notes, loop clips and export to Markdown.",
 	"license": "MIT",
 	"author": "Uzair Iqbal",
