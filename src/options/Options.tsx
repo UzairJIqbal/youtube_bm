@@ -56,7 +56,9 @@ export function Options() {
 		}
 	};
 
-	const openShortcuts = () => void chrome.tabs.create({ url: "chrome://extensions/shortcuts" });
+	// Edge has its own scheme for browser pages.
+	const scheme = navigator.userAgent.includes("Edg/") ? "edge" : "chrome";
+	const openShortcuts = () => void chrome.tabs.create({ url: `${scheme}://extensions/shortcuts` });
 
 	const describe: Record<string, string> = {
 		"add-bookmark": "Bookmark the current moment",

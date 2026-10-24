@@ -60,10 +60,10 @@ Also included:
 
 ## Install
 
-The Chrome Web Store listing is on its way. Until then:
+Works in Chrome and Microsoft Edge. The Edge Add-ons listing is on its way. Until then:
 
 1. Download `youtube-study-bookmarks.zip` from the [latest release](https://github.com/UzairJIqbal/youtube_bm/releases/latest) and unzip it.
-2. Open `chrome://extensions` and turn on **Developer mode**.
+2. Open `chrome://extensions` (in Edge, `edge://extensions`) and turn on **Developer mode**.
 3. Click **Load unpacked** and choose the unzipped folder.
 4. Open any YouTube video and press <kbd>Alt</kbd>+<kbd>B</kbd>.
 
@@ -111,7 +111,7 @@ npm run build          # type-check, then build everything into dist/
 npm test               # unit tests (Vitest)
 npm run lint
 npm run e2e            # end-to-end on live YouTube (Playwright)
-npm run zip            # build the Chrome Web Store package
+npm run zip            # build the store package (Chrome and Edge)
 npm run store-assets   # render the screenshots in this README
 ```
 
@@ -139,12 +139,13 @@ docs/             architecture notes and the GitHub Pages site
 
 ### Releasing
 
-Bump `version` in [`public/manifest.json`](public/manifest.json) and push a matching tag (`v1.0.1`). The workflow lints, tests and builds, then attaches the store zip to a GitHub release. Store listing copy and the privacy disclosures are in [CHROMEWEBSTORE.md](CHROMEWEBSTORE.md).
+Bump `version` in [`public/manifest.json`](public/manifest.json) and push a matching tag (`v1.0.1`). The workflow lints, tests and builds, then attaches the store zip to a GitHub release. Store listing copy and the privacy disclosures are in [CHROMEWEBSTORE.md](CHROMEWEBSTORE.md) and [EDGEADDONS.md](EDGEADDONS.md).
 
 ## Roadmap
 
 - [x] One-key capture, clips and loop, progress-bar markers
 - [x] Notes, tags, library search, Markdown export, backup
+- [ ] Microsoft Edge Add-ons release
 - [ ] Chrome Web Store release
 - [ ] Optional sync across devices
 - [ ] Notion export and shareable bookmark lists
